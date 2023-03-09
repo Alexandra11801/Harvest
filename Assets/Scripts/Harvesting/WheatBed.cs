@@ -11,22 +11,19 @@ namespace Harvest.Harvesting
         [SerializeField] private GameObject wheatStack;
         [SerializeField] private Transform stackSpawnPoint;
         [SerializeField] private float wheatGrowthTime;
-        private bool canBeHarvested;
+        [SerializeField] private SphereCollider trigger;
         private PlayerWheatCollector wheatCollector;
 
-        public bool CanBeHarvested => canBeHarvested;
-        
         private void Start()
         {
-            canBeHarvested = true;
             wheatCollector = FindObjectOfType<PlayerWheatCollector>();
         }
 
         public void Harvest()
         {
-            canBeHarvested = false;
             grownWheat.SetActive(false);
             cutWheat.SetActive(true);
+            trigger.enabled = false;
             var stack = Instantiate(wheatStack, stackSpawnPoint.position, Quaternion.identity);
             Physics.IgnoreCollision(stack.GetComponent<BoxCollider>(), wheatCollector.GetComponent<BoxCollider>());
             StartCoroutine(nameof(GrowWheat));
@@ -35,9 +32,9 @@ namespace Harvest.Harvesting
         private IEnumerator GrowWheat()
         {
             yield return new WaitForSeconds(wheatGrowthTime);
-            canBeHarvested = true;
             grownWheat.SetActive(true);
             cutWheat.SetActive(false);
+            trigger.enabled = true;
         }
     }
 }

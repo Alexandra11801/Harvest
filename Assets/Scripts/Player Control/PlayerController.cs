@@ -67,7 +67,7 @@ namespace Harvest.PlayerControl
             if (isWalking)
             {
                 if (other.TryGetComponent<WheatBed>(out var bed) && Vector3.Angle(character.forward, 
-                        other.transform.position - transform.position) < 60 && bed.CanBeHarvested)
+                        other.transform.position - transform.position) < 90)
                 {
                     Stop();
                     harvester.Harvest(bed);

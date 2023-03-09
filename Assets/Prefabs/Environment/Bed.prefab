@@ -118,6 +118,7 @@ MonoBehaviour:
   wheatStack: {fileID: 3581451028768004380, guid: e420a9e6e84a9be47bef90492f2d7484, type: 3}
   stackSpawnPoint: {fileID: 4750696104933695546}
   wheatGrowthTime: 10
+  trigger: {fileID: 777423353197074523}
 --- !u!1 &4850726013199575032
 GameObject:
   m_ObjectHideFlags: 0
